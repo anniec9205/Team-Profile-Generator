@@ -116,7 +116,7 @@ function startHtml() {
 }
 
 function addHtml(member) {
-    return new Promise(function (resolve, reject) {
+    return Promise (function (resolve, reject) {
         const name = member.getName();
         const role = member.getRole();
         const email = member.getEmail(); 
