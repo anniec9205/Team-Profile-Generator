@@ -12,16 +12,16 @@
     },
     "repository": {
       "type": "git",
-      "url": "git+https://github.com/RyanEllingson/Team-Profile-Generator.git"
+      "url": "git+https://github.com/anniec9205/Team-Profile-Generator.git"
     },
     "author": "",
     "license": "MIT",
     "bugs": {
-      "url": "https://github.com/RyanEllingson/Team-Profile-Generator/issues"
+      "url": "https://github.com/anniec9205/Team-Profile-Generator/issues"
     },
-    "homepage": "https://github.com/RyanEllingson/Team-Profile-Generator#readme",
+    "homepage": "https://github.com/anniec9205/Team-Profile-Generator#readme",
     "dependencies": {
-      "inquirer": "^7.0.0",
-      "jest": "^24.9.0"
+      "inquirer": "^8.0.0",
+      "jest": "^26.6.3"
     }
   }
