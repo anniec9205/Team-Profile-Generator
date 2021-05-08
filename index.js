@@ -2,9 +2,9 @@ const inquirer = require("inquirer");
 const fs = require("fs");
 const jest = require("jest");
 const axios = require("axios");
-const manager = require("./Library/manager");
-const intern = require("./Library/intern");
-const engineer = require("./Library/engineer");
+const manager = require("./lib/manager");
+const intern = require("./lib/intern");
+const engineer = require("./lib/engineer");
 const employees = [];
 
 function initApp() {
