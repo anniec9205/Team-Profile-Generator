@@ -1,6 +1,6 @@
-# Annie Chung's README Generator
+# Annie Chung's Team Profile Generator
 
-**About the README Generator**
+**About the Team Profile Generator**
  
 Allows the user to quickly and easily create a html file by using a command-line application to generate one from information it takes about employees on a software engineering team.
 
