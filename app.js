@@ -108,13 +108,99 @@ function startHtml() {
 
         <div class="container">
             <div class="row">`;
-            
+
     fs.writeFile("./Test/team.html", html, function(err) {
         if (err) {
             console.log(err);
         }
     });
     console.log("start");
+}
+
+function addHtml(member) {
+    return new Promise(function (resolve, reject) {
+        const name = member.getName();
+        const role = member.getRole();
+        const email = member.getEmail(); 
+        const id = member.getId();
+        
+        let data = "";
+        if (role === "engineer") {
+            const gitHub = member.getGithub();
+            data = 
+            `<div class="col-5">
+            <div class="card mx-auto mb-4" style="width: 17rem">
+            
+            <h5 class="card-header">${name}<br /><br />Engineer!</h5>
+
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">id: ${id}</li>
+                <li class="list-group-item">email address: ${email}</li>
+                <li class="list-group-item">gitHub: ${gitHub}</li>
+            </ul>
+
+            </div>
+            </div>`;
+
+        } else if (role === "intern") {
+            const school = member.getSchool();
+            data = 
+            `<div class="col-5">
+            <div class="card mx-auto mb-4" style="width: 17rem">
+
+            <h5 class="card-header">${name}<br /><br />Intern!</h5>
+
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">id: ${id}</li>
+                <li class="list-group-item">email address: ${email}</li>
+                <li class="list-group-item">school: ${school}</li>
+            </ul>
+
+            </div>
+            </div>`;
+
+        } else {
+            const officePhone = member.getOfficeNumber();
+            data = 
+            `<div class="col-5">
+            <div class="card mx-auto mb-4" style="width: 17rem">
+
+            <h5 class="card-header">${name}<br /><br />Manager!</h5>
+
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">id: ${id}</li>
+                <li class="list-group-item">email address: ${email}</li>
+                <li class="list-group-item">office phone: ${officePhone}</li>
+            </ul>
+
+            </div>
+            </div>`
+        }
+
+        console.log("adding team member");
+        fs.appendFile("./output/team.html", data, function (err) {
+            if (err) {
+                return reject(err);
+            };
+            return resolve();
+        });
+    });
+}
+
+function finishHtml() {
+    const html = 
+    `</div>
+    </div>
+    
+</body>
+</html>`;
+
+    fs.appendFile("./test/team.html", html, function (err) {
+        if (err) {
+            console.log(err);
+        };
+    });
+    console.log("end");
 }
 
 initApp();
