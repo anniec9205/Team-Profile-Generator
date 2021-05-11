@@ -1,8 +1,8 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
-const manager = require("./lib/manager");
-const intern = require("./lib/intern");
-const engineer = require("./lib/engineer");
+const Manager = require("./lib/manager");
+const Intern = require("./lib/intern");
+const Engineer = require("./lib/engineer");
 const employees = [];
 
 function initApp() {
@@ -15,33 +15,29 @@ function addMember() {
         message: "What is the team member's name",
         name: "name"
     },
-
     {
         type: "list",
         message: "Choose team member's role",
         choices: [
-            "manager",
-            "engineer",
-            "intern",
+            "Manager",
+            "Engineer",
+            "Intern",
         ],
         name: "role"
     },
-
     {
         message: "What is the team member's email address",
         name: "email"
     },
-
     {
         message: "What is the team member's id",
         name: "id"
     }])
-    
     .then(function({name, role, email, id}) {
         let roleInfo = "";
-        if (role === "engineer") {
+        if (role === "Engineer") {
             roleInfo = "GitHub username";
-        } else if (role === "intern") {
+        } else if (role === "Intern") {
             roleInfo = "school name";
         } else {
             roleInfo = "office phone number";
@@ -50,7 +46,6 @@ function addMember() {
             message: `What is the team member's ${roleInfo}`,
             name: "roleInfo"
         },
-
         {
             type: "list",
             message: "Do you want to add more team members?",
@@ -60,17 +55,15 @@ function addMember() {
             ],
             name: "moreMembers"
         }])
-
         .then(function({roleInfo, moreMembers}) {
             let newMember;
-            if (role === "engineer") {
-                newMember = new Engineer(name,roleInfo, email, id);
-            } else if (role === "intern") {
-                newMember = new Intern(name,roleInfo, email, id);
+            if (role === "Engineer") {
+                newMember = new Engineer(name, roleInfo, email, id);
+            } else if (role === "Intern") {
+                newMember = new Intern(name, roleInfo, email, id);
             } else {
-                newMember = new Manager(name,roleInfo, email, id);
+                newMember = new Manager(name, roleInfo, email, id);
             }
-
             employees.push(newMember);
             addHtml(newMember)
             .then(function() {
@@ -106,7 +99,6 @@ function startHtml() {
 
         <div class="container">
             <div class="row">`;
-
     fs.writeFile("./__tests__/team.html", html, function(err) {
         if (err) {
             console.log(err);
@@ -116,14 +108,14 @@ function startHtml() {
 }
 
 function addHtml(member) {
-    return Promise (function (resolve, reject) {
+    return new Promise (function (resolve, reject) {
         const name = member.getName();
         const role = member.getRole();
         const email = member.getEmail(); 
         const id = member.getId();
         
         let data = "";
-        if (role === "engineer") {
+        if (role === "Engineer") {
             const gitHub = member.getGithub();
             data = 
             `<div class="col-5">
@@ -140,7 +132,7 @@ function addHtml(member) {
             </div>
             </div>`;
 
-        } else if (role === "intern") {
+        } else if (role === "Intern") {
             const school = member.getSchool();
             data = 
             `<div class="col-5">
